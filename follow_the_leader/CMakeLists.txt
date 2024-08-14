@@ -18,7 +18,26 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+###########################################################
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
 
+
+add_executable(follow_the_leader src/followthe_leader.cpp)
+ament_target_dependencies(follow_the_leader rclcpp geometry_msgs sensor_msgs)
+
+
+
+install(TARGETS
+    follow_the_leader
+    DESTINATION lib/${PROJECT_NAME}
+)
+# install(DIRECTORY launch 
+# DESTINATION share/${PROJECT_NAME}
+# )
+############################################################
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
